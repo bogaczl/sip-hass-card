@@ -292,7 +292,7 @@ export class SIPCore {
     private async setupUser(): Promise<void> {
         try {
             const persons = await this.hass.callWS({ type: "person/list" });
-            const currentUsername = persons.storage.find((person: any) => person.user_id === this.hass.user.id).id;
+            const currentUsername = persons.storage.find((person: any) => person.ha_username === this.hass.user.id).id;
             this.user = this.config.users.find((user) => user.ha_username === currentUsername) || this.config.backup_user;
         } catch (error) {
             console.error("Error fetching persons from Home Assistant:", error);
